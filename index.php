@@ -1,22 +1,38 @@
-<?php
+<?php 
+    
+    session_start();
+    
+    if(!empty($_SESSION["erro"]) & $_SESSION["erro"] != "") {
+       
+        $msg = $_SESSION["erro"];
+        echo $msg;
+        $_SESSION["erro"] = ""; 
 
-    include_once("db.php");
-
+    }   
 ?>
 
-<h1>Insira um carro:</h1>
-<form action="process.php" method="POST">
-    <div>
-        <label for="brand">Marca do carro:</label>
-        <input type="text" name="brand" placeholder="Insira a marca">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de autenticação</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="main-container">
+        <form action="logado.php" method="POST">
+            <div class="form-container">
+                <label for="login">Login:</label>
+                <input type="text" name="login" id="login" placeholder="Digite seu login">
+            </div>
+            <div class="form-container">
+                <label for="password">Senha:</label>
+                <input type="password" name="password" id="password" placeholder="Digite sua senha">
+            </div>
+            <input type="submit" class="enviar-btn" value="Entrar">
+        </form>
     </div>
-    <div>
-        <label for="km">Kilometragem do carro:</label>
-        <input type="text" name="km" placeholder="Insira a Kilometragem">
-    </div>
-    <div>
-        <label for="color">Cor do carro:</label>
-        <input type="text" name="color" placeholder="Insira a cor">
-    </div>
-    <input type="submit" value="salvar">
-</form>
+</body>
+</html>
